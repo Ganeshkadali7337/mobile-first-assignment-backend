@@ -90,12 +90,8 @@ app.post("/signin", async (req, res) => {
 });
 
 app.get("/characters", authMiddleware, async (req, res) => {
-  const { page } = req.params || 1;
-
   try {
-    const { data } = await axios.get(
-      `https://swapi.dev/api/people/?page=${page}`
-    );
+    const { data } = await axios.get("https://swapi.dev/api/people");
     res.send(data);
   } catch (error) {
     res.status(500).json(error);
